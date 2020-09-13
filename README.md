@@ -1,6 +1,5 @@
 # ni-anomaly-detection-module
-ni-anomaly-detection-module detects resource overload and SLA(SLO) violations by monitoring VNFs' system resource metrics running from the OpenStack testbed. 
-
+ni-anomaly-detection-module detects resource overload and SLA(SLO) violations by monitoring VNFs' system resource metrics running from the OpenStack testbed. (You can access the Technical Document for Korean description in this repository)
 
 ## Main Responsibilities
 Supervised Learning-based VNF anomaly detection module.
