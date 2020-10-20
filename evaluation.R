@@ -14,7 +14,7 @@ library(h2o)
 #h2o.init()
 
 # connect the h2o platform in AI Node
-h2o.connect(ip = "141.223.124.28", port = 54321)
+h2o.connect(ip = "141.223.82.61", port = 54321)
 
 
 library(tidyverse)
