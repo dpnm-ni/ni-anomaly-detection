@@ -152,7 +152,7 @@ Detection result, time for sending request
 
 ## Release information
 * Release 1 - Detecting the VNFs' resource overload and SLO violations in fixed SFC.
-* Release 2 - Detecting the VNFs' resource overload and SLO violations in dynamic SFC. (TBA)
+* Release 2 - Model update to improve the performance
 
 Note that
 * The OpenStack testbed is implemented by [NI Project](https://github.com/dpnm-ni)
