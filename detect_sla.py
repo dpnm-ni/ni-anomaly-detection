@@ -12,15 +12,18 @@ from time import sleep
 
 if __name__ == '__main__':
 	# 1. Get VNF Information
+	#sfc_vnfs = ["firewall", "ids", "proxy", "dpi", "flowmonitor"]
 	sfc_vnfs = ["firewall", "flowmonitor", "dpi", "ids", "lb"]
-	prefix = "jb_"
+        #prefix = "suman-"
+        prefix = "and-"
 
 	vnfi_info = get_vnf_info(prefix, sfc_vnfs)
 	vnfi_list = vnfi_info["vnfi_list"]
-	#print(vnfi_list)
+	print(vnfi_list)
 
 	while(True):
 		vnf_resources = get_vnf_resources(vnfi_list)
+		import pdb; pdb.set_trace()
 		vnf_resources_string = get_vnf_resources_toString(vnf_resources)
 
 		sla_binary_body = "java -cp .:models/sla_binary/h2o-genmodel_sla.jar sla_binary "+vnf_resources_string

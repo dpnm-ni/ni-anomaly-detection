@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "NI VNF Anomaly Detection Module for the NI Project."
   version: "1.0.0"
-  title: "NI Project Anomaly Detection Module"
+  title: "NI Anomaly Detection Module"
 tags:
 - name: "ni_anomaly_detection_module"
   description: "Detecting VNFs' overload and SLA violation states using ML algorithms."
@@ -52,26 +52,41 @@ paths:
           schema:
             type: "string"
       x-swagger-router-controller: "swagger_server.controllers.vnf_anomaly_detection_controller"
-  /get_resource_overload_detection_result/{prefix}:
+  /get_anomaly_detection_F1_score/:
     get:
       tags:
       - "VNF Anomaly Detection"
-      summary: "Get VNF Anomaly Detection Model's Prediction Results - Resource Overload"
-      operationId: "get_resource_overload_detection_result"
+      summary: "Get VNF Anomaly Detection F1 score"
+      operationId: "get_ad_f1score"
       produces:
       - "application/json"
-      parameters:
-        - name: "prefix"
-          in: "path"
-          description: "VNF instance name prefix"
-          required: true
-          type: "string"
       responses:
         "200":
           description: "OK"
           schema:
             type: "string"
       x-swagger-router-controller: "swagger_server.controllers.vnf_anomaly_detection_controller"
+
+#  /get_resource_overload_detection_result/{prefix}:
+#    get:
+#      tags:
+#      - "VNF Anomaly Detection"
+#      summary: "Get VNF Anomaly Detection Model's Prediction Results - Resource Overload"
+#      operationId: "get_resource_overload_detection_result"
+#      produces:
+#      - "application/json"
+#      parameters:
+#        - name: "prefix"
+#          in: "path"
+#          description: "VNF instance name prefix"
+#          required: true
+#          type: "string"
+#      responses:
+#        "200":
+#          description: "OK"
+#          schema:
+#            type: "string"
+#      x-swagger-router-controller: "swagger_server.controllers.vnf_anomaly_detection_controller"
 
   /get_sla_detection_result/{prefix}:
     get:

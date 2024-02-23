@@ -1,5 +1,6 @@
 # ni-anomaly-detection-module
-ni-anomaly-detection-module detects resource overload and SLA(SLO) violations by monitoring VNFs' system resource metrics running from the OpenStack testbed. (You can access the [Technical Document](https://github.com/dpnm-ni/ni-anomaly-detection-public/blob/master/Technical_Document_Korean.pdf) for Korean description in this repository)
+ni-anomaly-detection-module detects resource overload and SLA(SLO) violations by monitoring VNFs' system resource metrics running from the OpenStack testbed using deep learning trained models. 
+This moudule is modified version of CJLee's code (https://github.com/RimDan/ni-anomaly-detection-public).
 
 ## Main Responsibilities
 Supervised Learning-based VNF anomaly detection module.
@@ -11,15 +12,14 @@ Supervised Learning-based VNF anomaly detection module.
 ## Requirements
 ```
 Ubuntu 16.04, 18.04
-Python 3.5.2+
+Python 3.8.2+
 Java 11+
 ```
 
 Please install pip3 and requirements by using the command as below.
 ```
 sudo apt-get update
-sudo apt-get install python3-pip
-pip3 install -r requirements.txt
+pip3.8 install -r requirements.txt
 ```
 
 ## Configuration
@@ -53,7 +53,7 @@ ni_nfvo:
 
 ## Usage
 
-After installation and configuration of this module, you can run this module by using the command as follows.
+After installing and configuring this module, you can run this module by using the command as follows.
 
 ```
 sudo python3 -m swagger_server
@@ -130,7 +130,7 @@ Array of Resource metrics
 
 - **GET /get_resource_overload_detection_result/{prefix}**
 
-Detection result, time for sending request
+Detection result, time for sending a request
 
 ```
     {
@@ -141,7 +141,7 @@ Detection result, time for sending request
 
 - **GET /get_sla_detection_result/{prefix}**
 
-Detection result, time for sending request
+Detection result, time for sending a request
 
 ```
     {
@@ -150,9 +150,8 @@ Detection result, time for sending request
     }
 ```
 
-## Release information
-* Release 1 - Detecting the VNFs' resource overload and SLO violations in fixed SFC.
-* Release 2 - Model update to improve the performance
+## Models
+For the used deep learning models, please refer to [this paper](https://arxiv.org/pdf/2109.14276.pdf)
 
 Note that
 * The OpenStack testbed is implemented by [NI Project](https://github.com/dpnm-ni)

@@ -1,4 +1,19 @@
 ni_mon:
-  host: http://<ni_mon_ip>:<ni_mon_port>
+  host: http://141.223.181.149:8383
 ni_nfvo:
-  host: http://<ni_nfvo_ip>:<ni_nfvo_port>
+  host: http://141.223.181.149:8181
+instance:                                   # Information of new instance created by a scale-out action
+  id: ubuntu                                # SSH ID of new VNF instance
+  password: dpnm                        # SSH ID of new VNF instance
+image:                                      # Image IDs used by OpenStack
+  firewall: 6d3d887e-875d-4566-9051-68f326c33fa6
+  flowmonitor: a458f634-958a-4182-8d4b-115a7b4c4006
+  dpi: 381f99c8-536d-4915-aad7-8fd974fcbabd
+  ids: 348fe774-6f62-4e43-afc6-c67e48c194e8
+  proxy: 92e7b3f3-bb91-4980-a20a-0a802f332dd1
+  sla_monitor: 10a4457b-7a67-4dd3-9fee-fb8eb42794cd  # Image : 220914_sla_monitor
+  nat: 9e129891-e7c4-46f3-b24e-4371b716d359          # HDN : I copied u16.04_x64 image as default
+  wano: 9e129891-e7c4-46f3-b24e-4371b716d359         # HDN : I copied u16.04_x64 image as default
+flavor:                                     # Flavor ID used by OpenStack
+  default: 286a885a-9ebf-4bfc-8652-b4ccd7e8d04d #75626b49-356a-4055-af32-ecbd41b03df8
+
