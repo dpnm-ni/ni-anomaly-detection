@@ -157,6 +157,8 @@ def get_vnf_resources(vnfi_list):
             j = resource_type.index(type)
             measurement_type = type
             response = ni_mon_api.get_measurement(vnf_id, measurement_type, start_time, end_time)
+            print(vnf_id, measurement_type, start_time, end_time)
+            print(response)
             resources[i, j] = response[-1].measurement_value
 
             # Calculate CPU utilization as persent
@@ -383,12 +385,21 @@ def read_data(file_path):
     y_data=data['abnormal'].values
     return x_data, y_data
 
+def read_from_all_csv(file_path):
+    data = pd.read_csv(file_path)
+    x_data= data.iloc[:,:-1].values
+    y_data= data.iloc[:,-1].values
+    return x_data, y_data 
+
 def get_ad_f1score():
     # read data
-    file_path='/home/dpnm/tmp/ni_ad_data'
-    x_data, y_data = read_data(file_path)
+    #file_path='/home/dpnm/tmp/ni_ad_data'
+    #x_data, y_data = read_data(file_path)
     #x_data=x_data[:x_data.shape[0]]
     #y_data=y_data[:y_data.shape[0]]
+    file_path='ad_all_data.csv'
+    x_data, y_data = read_from_all_csv(file_path)
+    print (x_data.shape, y_data.shape)
     result_dict={}
     load_path = './cjlee/AT-7.pth'
     stat_path = './cjlee/tpi_train.csv.stat'
@@ -412,6 +423,7 @@ def get_ad_f1score():
     #x_data = torch.tensor(x_data).type(torch.float32).to(device)    
     test_x=torch.tensor(test_x).type(torch.float32).to(device)
     train_x=torch.tensor(train_x).type(torch.float32).to(device)
+    print(test_x.shape)
     output = model(test_x)
     #int(torch.argmax(output.detach())))
     #print(output.shape)
@@ -432,7 +444,7 @@ def get_ad_f1score():
     for epoch in range(30):
         optimizer.zero_grad()
         output = model(train_x)
-        loss = loss_fn(output, torch.tensor(train_y).to(device))
+        loss = loss_fn(output, torch.tensor(train_y).long().to(device))
         loss.backward()
         optimizer.step()
         if epoch%10==0:
@@ -453,8 +465,8 @@ def get_ad_f1score():
     result_dict['trained_precision'] = str(precision_score(test_y, output))
     result_dict['trained_recall'] = str(recall_score(test_y, output))
     data_test=np.c_[data_test,output]
-    np.savetxt('/home/dpnm/data/ad_data_train.csv',data_train,delimiter=',')
-    np.savetxt('/home/dpnm/data/ad_data_test.csv',data_test,delimiter=',')
+    #np.savetxt('/home/dpnm/data/ad_data_train.csv',data_train,delimiter=',')
+    #np.savetxt('/home/dpnm/data/ad_data_test.csv',data_test,delimiter=',')
     return result_dict
 
 def get_resource_overload_detection_result(prefix, sfc_vnfs):
